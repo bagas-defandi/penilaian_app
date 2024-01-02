@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 Color PrimaryColor = Color.fromRGBO(106, 90, 224, 1);
 Color NeutralWhiteColor = Color.fromRGBO(248, 248, 248, 1);
 Color NeutralDarkColor = Color.fromRGBO(0, 24, 51, 1);
+Color NeutralDarkColor2 = Color.fromRGBO(0, 24, 51, 0.5);
 
 TextStyle boldtTextStyle1 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w700, fontSize: 28, decoration: TextDecoration.none);
@@ -20,6 +21,6 @@ TextStyle boldTextStyle3 = GoogleFonts.nunito().copyWith(
 TextStyle regularTextStyle1 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w300, fontSize: 14, decoration: TextDecoration.none);
 TextStyle regularTextstyle2 = GoogleFonts.nunito().copyWith(
-    fontWeight: FontWeight.w300, fontSize: 12, decoration: TextDecoration.none);
+    fontWeight: FontWeight.w400, fontSize: 12, decoration: TextDecoration.none);
 TextStyle regularTextStyle3 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w300, fontSize: 10, decoration: TextDecoration.none);
