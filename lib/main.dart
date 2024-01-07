@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:penilaian_app/home_page.dart';
+import 'package:penilaian_app/adminlogin_page.dart';
+import 'package:penilaian_app/jurilogin_page.dart';
 import 'package:penilaian_app/theme.dart';
+import 'package:penilaian_app/pages/home.dart';
+import 'package:penilaian_app/pages/createlomba_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,20 +22,20 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: CreateLomba(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MyStyle extends StatefulWidget {
+  const MyStyle({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyStyle> createState() => _MyStyleState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyStyleState extends State<MyStyle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
