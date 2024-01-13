@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 50,
               ),
-
               // TOP BAR
               Center(
                 child: Text(

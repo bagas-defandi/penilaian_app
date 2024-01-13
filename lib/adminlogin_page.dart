@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/pages/home.dart';
 import 'package:penilaian_app/theme.dart';
@@ -44,7 +45,7 @@ class _LoginAdminState extends State<LoginAdmin> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 105,
               ),
               Image.asset(
@@ -85,9 +86,8 @@ class _LoginAdminState extends State<LoginAdmin> {
                         style: const TextStyle(
                           color: Colors.black,
                         ),
-                        keyboardType: const TextInputType.numberWithOptions(),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
                       // Password Textfield
                       TextField(
@@ -107,13 +107,12 @@ class _LoginAdminState extends State<LoginAdmin> {
                         style: const TextStyle(
                           color: Colors.black,
                         ),
-                        keyboardType: const TextInputType.numberWithOptions(),
                       ),
                       const SizedBox(height: 15),
 
                       // BUTTON Masuk
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         child: MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(
@@ -121,11 +120,11 @@ class _LoginAdminState extends State<LoginAdmin> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomePage()));
+                                      builder: (context) => const HomePage()));
                             },
                             child: Container(
                               width: 100,
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                   color: PrimaryColor,
                                   border: Border.all(color: NeutralDarkColor),
@@ -142,29 +141,31 @@ class _LoginAdminState extends State<LoginAdmin> {
                         ),
                       ),
 
+                      const SizedBox(height: 10),
                       // Masuk sebagai Juri
                       RichText(
                         text: TextSpan(
+                          style: const TextStyle(color: Colors.black),
                           children: [
                             const TextSpan(
                               text: 'Masuk sebagai ',
-                              style: TextStyle(color: Colors.black),
                             ),
-                            WidgetSpan(
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pop(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginAdmin()));
-                                },
-                                child: Text('Juri?',
-                                    style: TextStyle(
-                                      color: PrimaryColor,
-                                      decoration: TextDecoration.underline,
-                                    )),
+                            TextSpan(
+                              text: "Juri",
+                              style: TextStyle(
+                                color: PrimaryColor,
+                                decoration: TextDecoration.underline,
                               ),
-                            ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pop(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginAdmin(),
+                                    ),
+                                  );
+                                },
+                            )
                           ],
                         ),
                       ),

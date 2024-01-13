@@ -13,6 +13,8 @@ TextStyle boldtTextStyle2 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w700, fontSize: 24, decoration: TextDecoration.none);
 TextStyle extraBoldTextStyle1 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w900, fontSize: 16, decoration: TextDecoration.none);
+TextStyle extraBoldTextStyle2 = GoogleFonts.nunito().copyWith(
+    fontWeight: FontWeight.w800, fontSize: 16, decoration: TextDecoration.none);
 TextStyle semiBoldTextStyle1 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w500, fontSize: 16, decoration: TextDecoration.none);
 TextStyle lightTextStyle1 = GoogleFonts.nunito().copyWith(
@@ -25,3 +27,5 @@ TextStyle regularTextstyle2 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w400, fontSize: 12, decoration: TextDecoration.none);
 TextStyle regularTextStyle3 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w300, fontSize: 10, decoration: TextDecoration.none);
+TextStyle regularTextStyle4 = GoogleFonts.nunito().copyWith(
+    fontWeight: FontWeight.w400, fontSize: 14, decoration: TextDecoration.none);

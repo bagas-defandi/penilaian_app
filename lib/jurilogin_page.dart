@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:penilaian_app/adminlogin_page.dart';
@@ -33,8 +34,12 @@ class _LoginJuriState extends State<LoginJuri> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginAdmin()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginAdmin(),
+                      ),
+                    );
                   },
                   child: Row(
                     children: [
@@ -55,7 +60,7 @@ class _LoginJuriState extends State<LoginJuri> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Image.asset(
@@ -104,7 +109,7 @@ class _LoginJuriState extends State<LoginJuri> {
 
                       // BUTTON Masuk
                       Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         child: MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(
@@ -112,11 +117,11 @@ class _LoginJuriState extends State<LoginJuri> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomePage()));
+                                      builder: (context) => const HomePage()));
                             },
                             child: Container(
                               width: 100,
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                   color: PrimaryColor,
                                   border: Border.all(color: NeutralDarkColor),
@@ -132,30 +137,28 @@ class _LoginJuriState extends State<LoginJuri> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
+                      const SizedBox(height: 15),
 
                       // HUBUNGI ADMIN
                       RichText(
+                        textAlign: TextAlign.center,
                         text: TextSpan(
+                          style: const TextStyle(color: Colors.black),
                           children: [
                             const TextSpan(
                               text:
                                   'Pin digunakan untuk login sebagai juri. Jika anda belum mempunyai pin? Silahkan hubungi ',
-                              style: TextStyle(color: Colors.black),
                             ),
-                            WidgetSpan(
-                              child: InkWell(
-                                onTap: () {
+                            TextSpan(
+                              text: "Admin",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: PrimaryColor,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
                                   sendEmailToAdmin();
                                 },
-                                child: Text('Admin',
-                                    style: TextStyle(
-                                      color: PrimaryColor,
-                                      decoration: TextDecoration.underline,
-                                    )),
-                              ),
                             ),
                           ],
                         ),
