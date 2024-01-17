@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:penilaian_app/pages/description_page.dart';
+import 'package:penilaian_app/pages/home.dart';
 import 'package:penilaian_app/theme.dart';
 
 class CreateLomba extends StatefulWidget {
@@ -27,7 +27,7 @@ class _CreateLombaState extends State<CreateLomba> {
             children: [
               // TOP BAR
               Padding(
-                padding: EdgeInsets.fromLTRB(24, 15, 24, 15),
+                padding: const EdgeInsets.fromLTRB(24, 15, 24, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -38,7 +38,7 @@ class _CreateLombaState extends State<CreateLomba> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DescriptionPage()));
+                                  builder: (context) => const HomePage()));
                         },
                         child: Image.asset(
                           "assets/images/icon/button_back.png",
@@ -46,7 +46,7 @@ class _CreateLombaState extends State<CreateLomba> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 61,
                     ),
                     Text(
@@ -56,7 +56,7 @@ class _CreateLombaState extends State<CreateLomba> {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
 
               //CONTAINER
               Container(
@@ -65,14 +65,14 @@ class _CreateLombaState extends State<CreateLomba> {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 width: screenWidth,
-                margin: EdgeInsets.symmetric(horizontal: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
                   children: [
                     // GAMBAR/POSTER LOMBA
                     Container(
                       height: 191,
                       width: 323,
-                      margin: EdgeInsets.fromLTRB(26, 23, 26, 23),
+                      margin: const EdgeInsets.fromLTRB(26, 23, 26, 23),
                       decoration: BoxDecoration(
                           color: GrayColor,
                           borderRadius: BorderRadius.circular(30)),
@@ -80,7 +80,7 @@ class _CreateLombaState extends State<CreateLomba> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image(
+                            const Image(
                               image: AssetImage(
                                   'assets/images/example_Poster.png'),
                             ),
@@ -92,7 +92,7 @@ class _CreateLombaState extends State<CreateLomba> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
 
                     // FIELD JUDUL
                     Row(
@@ -128,7 +128,7 @@ class _CreateLombaState extends State<CreateLomba> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 9),
+                    const SizedBox(height: 9),
 
                     // FIELD PENYELENGGARA
                     Row(
@@ -166,7 +166,7 @@ class _CreateLombaState extends State<CreateLomba> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 9),
+                    const SizedBox(height: 9),
 
                     // FIELD DESKRIPSI
                     Row(
@@ -183,7 +183,7 @@ class _CreateLombaState extends State<CreateLomba> {
                       child: Container(
                         height: 116,
                         width: MediaQuery.of(context).size.width - 50,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: TextFormField(
                           // controller: _deskripsiController,
                           maxLines: 10,
@@ -207,22 +207,28 @@ class _CreateLombaState extends State<CreateLomba> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 23),
+                    const SizedBox(height: 23),
 
                     // BUTTON SAVE OR CANCEL
                     Row(
                       children: [
-                        SizedBox(width: 118),
+                        const SizedBox(width: 118),
                         Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomePage()));
+                              },
                               child: Container(
                                 width: 98,
                                 height: 42,
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                     color: NeutralWhiteColor,
                                     border: Border.all(
@@ -240,7 +246,7 @@ class _CreateLombaState extends State<CreateLomba> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
@@ -248,7 +254,7 @@ class _CreateLombaState extends State<CreateLomba> {
                               child: Container(
                                 width: 98,
                                 height: 42,
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                     color: PrimaryColor,
                                     border: Border.all(color: PrimaryColor),
@@ -266,7 +272,7 @@ class _CreateLombaState extends State<CreateLomba> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),

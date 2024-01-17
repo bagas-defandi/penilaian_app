@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:penilaian_app/theme.dart';
 
 class CardWidget extends StatelessWidget {
-  // final CardItem card;
+  // final CardWidget card;
 
   // const CardWidget({required this.card, Key? key}) : super(key: key);
 
@@ -47,7 +47,6 @@ class CardWidget extends StatelessWidget {
         crossAxisCount: 2,
         padding: const EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 8.0,
-        // TODO: Build a grid of cards (102)
         children: _buildGridCards(10));
   }
 }

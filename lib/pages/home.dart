@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:penilaian_app/model/card_carousel.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:penilaian_app/model/card_widget.dart';
-import 'package:penilaian_app/pages/description_page.dart';
 import 'package:penilaian_app/pages/createlomba_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               // TOP BAR
@@ -41,22 +40,23 @@ class _HomePageState extends State<HomePage> {
                   style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
 
               // Profile Section
               Center(
+                // ignore: sized_box_for_whitespace
                 child: Container(
                   width: 234,
                   height: 48,
                   child: Row(
                     children: [
-                      Image(
+                      const Image(
                         image:
                             AssetImage('assets/images/icon/Profile_icon.png'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 29,
                       ),
                       Column(
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
 
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 width: 325,
                 height: 56,
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(82, 69, 175, 1),
+                    color: const Color.fromRGBO(82, 69, 175, 1),
                     borderRadius: BorderRadius.circular(12)),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 29.0),
@@ -110,25 +110,25 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 43,
               ),
 
               // CAROUSEL SECTION
-              CardCarousel(),
-              SizedBox(height: 49),
+              const CardCarousel(),
+              const SizedBox(height: 49),
 
               // LOMBA LAINNYA SECTION
               Container(
                 decoration: BoxDecoration(
                   color: NeutralWhiteColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 5.0),
-                margin: EdgeInsets.only(bottom: 0),
+                padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 5.0),
+                margin: const EdgeInsets.only(bottom: 0),
                 width: screenWidth,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CreateLomba()));
+                                builder: (context) => const CreateLomba()));
                       },
                       child: Image.asset('assets/images/icon/button_Add.png'),
                     ),
@@ -152,11 +152,11 @@ class _HomePageState extends State<HomePage> {
               // CARD LOMBA
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(top: 0),
+                  margin: const EdgeInsets.only(top: 0),
                   width: screenWidth,
                   color: NeutralWhiteColor,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
+                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                     child: CardWidget(),
                   ),
                 ),

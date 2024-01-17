@@ -27,7 +27,7 @@ class _CardCarouselState extends State<CardCarousel> {
         aspectRatio: 16 / 9,
         autoPlayCurve: Curves.fastOutSlowIn,
         enableInfiniteScroll: true,
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayAnimationDuration: const Duration(milliseconds: 800),
         viewportFraction: 0.8,
       ),
       items: items.map((item) {
@@ -35,7 +35,7 @@ class _CardCarouselState extends State<CardCarousel> {
           builder: (BuildContext context) {
             return Container(
               width: 278,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              margin: const EdgeInsets.symmetric(horizontal: 5.0),
               decoration: BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(8.0),
@@ -43,7 +43,7 @@ class _CardCarouselState extends State<CardCarousel> {
               child: Center(
                 child: Text(
                   item,
-                  style: TextStyle(fontSize: 16.0, color: Colors.white),
+                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
               ),
             );

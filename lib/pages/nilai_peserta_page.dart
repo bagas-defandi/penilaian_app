@@ -15,11 +15,16 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          "Tentang Lomba",
+          'Nilai Peserta',
           style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
+        ),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Image.asset('assets/images/icon/button_back.png'),
         ),
         centerTitle: true,
       ),
+      backgroundColor: PrimaryColor,
       body: Container(
         color: NeutralWhiteColor,
         width: double.infinity,

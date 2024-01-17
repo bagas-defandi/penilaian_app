@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:penilaian_app/adminlogin_page.dart';
-import 'package:penilaian_app/jurilogin_page.dart';
-import 'package:penilaian_app/pages/nilai_peserta_page.dart';
-import 'package:penilaian_app/pages/tentang_lomba_page.dart';
+import 'package:penilaian_app/splashscreen.dart';
 import 'package:penilaian_app/theme.dart';
-import 'package:penilaian_app/pages/home.dart';
-import 'package:penilaian_app/pages/createlomba_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,12 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Specto App Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TentangLombaPage(),
+      home: const SplashScreen(),
     );
   }
 }

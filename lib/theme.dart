@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color PrimaryColor = Color.fromRGBO(106, 90, 224, 1);
-Color NeutralWhiteColor = Color.fromRGBO(248, 248, 248, 1);
-Color NeutralDarkColor = Color.fromRGBO(0, 24, 51, 1);
-Color NeutralDarkColor2 = Color.fromRGBO(0, 24, 51, 0.5);
-Color GrayColor = Color.fromRGBO(217, 217, 217, 1);
+Color PrimaryColor = const Color.fromRGBO(106, 90, 224, 1);
+Color NeutralWhiteColor = const Color.fromRGBO(248, 248, 248, 1);
+Color NeutralDarkColor = const Color.fromRGBO(0, 24, 51, 1);
+Color NeutralDarkColor2 = const Color.fromRGBO(0, 24, 51, 0.5);
+Color GrayColor = const Color.fromRGBO(217, 217, 217, 1);
 
 TextStyle boldtTextStyle1 = GoogleFonts.nunito().copyWith(
     fontWeight: FontWeight.w700, fontSize: 28, decoration: TextDecoration.none);
