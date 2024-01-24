@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "167173489590",
+    "project_id": "specto-app",
+    "storage_bucket": "specto-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167173489590:android:2dc98b2733d71197027717",
+        "android_client_info": {
+          "package_name": "com.example.penilaian_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNbkKTT5AofKNqqgTtlfGv_aIhq6e0qW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
