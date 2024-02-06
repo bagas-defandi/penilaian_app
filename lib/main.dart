@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:penilaian_app/adminlogin_page.dart';
+import 'package:penilaian_app/pages/create_lomba_revisi_page.dart';
+import 'package:penilaian_app/pages/createlomba_page.dart';
+import 'package:penilaian_app/pages/detail_nilai_page.dart';
+import 'package:penilaian_app/pages/home.dart';
+import 'package:penilaian_app/pages/leaderboard_page.dart';
+import 'package:penilaian_app/pages/nilai_peserta_page.dart';
+import 'package:penilaian_app/pages/tentang_lomba_page.dart';
 import 'package:penilaian_app/splashscreen.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,10 +30,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Specto App Demo',
       theme: ThemeData(
+        fontFamily: 'Nunito',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const DetailNilaiPage(),
     );
   }
 }

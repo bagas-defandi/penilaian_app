@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:penilaian_app/adminlogin_page.dart';
+import 'package:penilaian_app/pages/home.dart';
+import 'package:penilaian_app/pages/leaderboard_page.dart';
 import 'package:penilaian_app/pages/tentang_lomba_page.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,7 +21,7 @@ class _LoginJuriState extends State<LoginJuri> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/background/bg-onboarding.png'),
           fit: BoxFit.cover,
@@ -115,10 +117,11 @@ class _LoginJuriState extends State<LoginJuri> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const TentangLombaPage()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePage(),
+                                ),
+                              );
                             },
                             child: Container(
                               width: 100,

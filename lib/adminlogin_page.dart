@@ -62,12 +62,14 @@ class _LoginAdminState extends State<LoginAdmin> {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Masuk Sebagai Admin',
-                        style: boldtTextStyle2,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 24,
+                        ),
                       ),
                       const SizedBox(height: 20),
-
                       // Username Textfield
                       TextField(
                         controller: _usernameController,
@@ -133,7 +135,8 @@ class _LoginAdminState extends State<LoginAdmin> {
                                 child: Text(
                                   "Masuk",
                                   style: boldTextStyle3.copyWith(
-                                      color: NeutralWhiteColor),
+                                    color: NeutralWhiteColor,
+                                  ),
                                 ),
                               ),
                             ),

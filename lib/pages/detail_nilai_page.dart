@@ -1,22 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/theme.dart';
 
-class DetailNilai extends StatefulWidget {
-  const DetailNilai({super.key});
+class DetailNilaiPage extends StatefulWidget {
+  const DetailNilaiPage({super.key});
 
   @override
-  State<DetailNilai> createState() => _DetailNilaiState();
+  State<DetailNilaiPage> createState() => _DetailNilaiPageState();
 }
 
-class _DetailNilaiState extends State<DetailNilai> {
+class _DetailNilaiPageState extends State<DetailNilaiPage> {
+  final items = [
+    '0 Tidak Dikerjakan',
+    '2 Kurang Tepat',
+    '3 Kurang Tepat',
+    '4 Kurang Tepat',
+    '8 Tepat',
+  ];
+  String? value;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          'Dwi Urfatul',
-          style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
+          'SMAN 1 SAROLANGUN',
+          style: TextStyle(
+            color: NeutralWhiteColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
@@ -28,7 +41,7 @@ class _DetailNilaiState extends State<DetailNilai> {
       body: Container(
         child: Column(
           children: [
-            SizedBox(height: 15.0),
+            const SizedBox(height: 15.0),
             Text(
               'Lomba Cerdas Cermat',
               style: extraBoldTextStyle1.copyWith(
@@ -38,75 +51,87 @@ class _DetailNilaiState extends State<DetailNilai> {
               'Universitas Jambi',
               style: lightTextStyle1.copyWith(color: NeutralWhiteColor),
             ),
-            SizedBox(height: 5.0),
+            const SizedBox(height: 5.0),
             Container(
               decoration: BoxDecoration(
                 color: NeutralWhiteColor,
               ),
-              padding: EdgeInsets.all(0),
-              margin: EdgeInsets.only(top: 5.0),
+              padding: const EdgeInsets.all(0),
+              margin: const EdgeInsets.only(top: 5.0),
               width: MediaQuery.of(context).size.width,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: DataTable(
-                  headingRowColor: MaterialStateColor.resolveWith(
-                      (states) => const Color.fromRGBO(241, 243, 249, 1)),
-                  columns: const [
-                    DataColumn(
-                      label: Text("Nama Juri"),
+              child: DataTable(
+                headingRowColor: MaterialStateColor.resolveWith(
+                    (states) => const Color.fromRGBO(241, 243, 249, 1)),
+                columns: const [
+                  DataColumn(
+                    label: Expanded(
+                      child: Text(
+                        "Penilaian Awal",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    DataColumn(
-                      label: Text("Kriteria 1"),
-                    ),
-                    DataColumn(
-                      label: Text("Kriteria 2"),
-                    ),
-                    DataColumn(
-                      label: Text("Kriteria 3"),
-                    ),
-                  ],
-                  rows: [
-                    DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            "Juri 1 \nUniversitas Jambi",
-                            style: regularTextStyle1,
+                  ),
+                  DataColumn(
+                    label: Text(""),
+                  ),
+                ],
+                rows: [
+                  DataRow(
+                    cells: [
+                      const DataCell(
+                        Text("Pengamanan TKP"),
+                      ),
+                      // DataCell(Text("TEXT")),
+                      DataCell(
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value,
+                            items: items.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) =>
+                                setState(() => this.value = value),
                           ),
                         ),
-                        DataCell(Text("TEXT")),
-                        DataCell(Text("TEXT")),
-                        DataCell(Text("TEXT")),
-                      ],
-                    ),
-                    DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            "Juri 2 \nUniversitas Jambi",
-                            style: regularTextStyle1,
+                      ),
+                    ],
+                  ),
+                  DataRow(
+                    cells: [
+                      const DataCell(
+                        Text("Perkenalan Diri"),
+                      ),
+                      DataCell(
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value,
+                            items: items.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) =>
+                                setState(() => this.value = value),
                           ),
                         ),
-                        DataCell(Text("TEXT")),
-                        DataCell(Text("TEXT")),
-                        DataCell(Text("TEXT")),
-                      ],
-                    ),
-                    DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            "Juri 3 \nUniversitas Jambi",
-                            style: regularTextStyle1,
-                          ),
-                        ),
-                        DataCell(Text("TEXT")),
-                        DataCell(Text("TEXT")),
-                        DataCell(Text("TEXT")),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
