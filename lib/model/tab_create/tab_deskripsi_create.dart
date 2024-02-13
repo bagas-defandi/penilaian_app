@@ -58,8 +58,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 hintText: 'Masukkan Judul lomba',
                 filled: true,
-                fillColor: Color.fromARGB(255, 182, 180, 173),
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                   borderSide: const BorderSide(width: 0),
@@ -72,7 +71,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
               cursorColor: NeutralWhiteColor,
             ),
             const SizedBox(height: 9),
-            Text(
+            const Text(
               "Penyelenggara",
               // style: boldtTextStyle2.copyWith(color: Colors.black),
               style: TextStyle(
@@ -88,8 +87,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 hintText: 'Masukkan Penyelenggara Lomba',
                 filled: true,
-                fillColor: Colors.amber,
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                   borderSide: const BorderSide(width: 0),
@@ -102,9 +100,8 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
               cursorColor: NeutralWhiteColor,
             ),
             const SizedBox(height: 9),
-            Text(
+            const Text(
               "Deskripsi",
-              // style: boldtTextStyle2.copyWith(color: Colors.black),
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22,
@@ -113,13 +110,13 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
             ),
             const SizedBox(height: 12),
             TextField(
+              maxLines: null,
               decoration: InputDecoration(
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 hintText: 'Tambahkan deskripsi lomba',
                 filled: true,
-                fillColor: Colors.amber,
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.black),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                   borderSide: const BorderSide(width: 0),

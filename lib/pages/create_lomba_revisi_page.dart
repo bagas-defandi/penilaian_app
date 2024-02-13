@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/model/tab_create/tab_deskripsi_create.dart';
+import 'package:penilaian_app/model/tab_create/tab_formpenilaian_create.dart';
+import 'package:penilaian_app/model/tab_create/tab_juri_create.dart';
+import 'package:penilaian_app/model/tab_create/tab_peserta_create.dart';
 import 'package:penilaian_app/pages/nilai_peserta_page.dart';
 import 'package:penilaian_app/theme.dart';
 
@@ -24,6 +27,9 @@ class _CreateLombaRevisiPageState extends State<CreateLombaRevisiPage> {
     super.initState();
     tabs = [
       const BuildDeskripsiCreate(),
+      const CreatePenilaian(),
+      const CreatePeserta(),
+      const CreateJuri(),
     ];
   }
 
