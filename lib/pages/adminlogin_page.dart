@@ -10,6 +10,8 @@ class LoginAdmin extends StatefulWidget {
 }
 
 class _LoginAdminState extends State<LoginAdmin> {
+  bool passwordHidden = true;
+  final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -46,113 +48,129 @@ class _LoginAdminState extends State<LoginAdmin> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        const Text(
-                          'Masuk Sebagai Admin',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 24,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        // Username Textfield
-                        TextField(
-                          controller: _usernameController,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            hintText: 'Username',
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                20.0,
-                              ), // Set the border radius
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Masuk Sebagai Admin',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 24,
                             ),
                           ),
-                          style: const TextStyle(
-                            color: Colors.black,
+                          const SizedBox(height: 20),
+                          // Username Textfield
+                          TextFormField(
+                            controller: _usernameController,
+                            validator: (value) => value == null || value.isEmpty
+                                ? 'Username wajib diisi'
+                                : null,
+                            decoration: InputDecoration(
+                              hintText: 'Username',
+                              contentPadding: const EdgeInsets.all(16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  20.0,
+                                ),
+                              ),
+                            ),
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
+                          const SizedBox(height: 20),
 
-                        // Password Textfield
-                        TextField(
-                          obscureText: true,
-                          controller: _passwordController,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16,
+                          // Password Textfield
+                          TextFormField(
+                            controller: _passwordController,
+                            validator: (value) => value == null || value.isEmpty
+                                ? 'Password wajib diisi'
+                                : null,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
+                              contentPadding: const EdgeInsets.all(16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                  20.0,
+                                ),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    passwordHidden = !passwordHidden;
+                                  });
+                                },
+                                icon: Icon(passwordHidden
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                20.0,
-                              ), // Set the border radius
+                            obscureText: passwordHidden,
+                            style: const TextStyle(
+                              color: Colors.black,
                             ),
                           ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
+                          const SizedBox(height: 15),
 
-                        // BUTTON Masuk
-                        Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/home");
-                              },
-                              child: Container(
-                                width: 100,
-                                padding: const EdgeInsets.all(5.0),
-                                decoration: BoxDecoration(
-                                    color: PrimaryColor,
-                                    border: Border.all(color: NeutralDarkColor),
-                                    borderRadius: BorderRadius.circular(50)),
-                                child: Center(
-                                  child: Text(
-                                    "Masuk",
-                                    style: boldTextStyle3.copyWith(
-                                      color: NeutralWhiteColor,
+                          // BUTTON Masuk
+                          Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    Navigator.pushNamed(context, "/home");
+                                  }
+                                },
+                                child: Container(
+                                  width: 100,
+                                  padding: const EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                      color: PrimaryColor,
+                                      border:
+                                          Border.all(color: NeutralDarkColor),
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: Center(
+                                    child: Text(
+                                      "Masuk",
+                                      style: boldTextStyle3.copyWith(
+                                        color: NeutralWhiteColor,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
 
-                        const SizedBox(height: 10),
-                        // Masuk sebagai Juri
-                        RichText(
-                          text: TextSpan(
-                            style: const TextStyle(color: Colors.black),
-                            children: [
-                              const TextSpan(
-                                text: 'Masuk sebagai ',
-                              ),
-                              TextSpan(
-                                text: "Juri",
-                                style: TextStyle(
-                                  color: PrimaryColor,
-                                  decoration: TextDecoration.underline,
+                          const SizedBox(height: 10),
+                          // Masuk sebagai Juri
+                          RichText(
+                            text: TextSpan(
+                              style: const TextStyle(color: Colors.black),
+                              children: [
+                                const TextSpan(
+                                  text: 'Masuk sebagai ',
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                     Navigator.pushReplacementNamed(
-                                        context, "/juri");
-                                  },
-                              )
-                            ],
+                                TextSpan(
+                                  text: "Juri",
+                                  style: TextStyle(
+                                    color: PrimaryColor,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushReplacementNamed(
+                                          context, "/juri");
+                                    },
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
