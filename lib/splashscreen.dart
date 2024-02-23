@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:penilaian_app/jurilogin_page.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -20,10 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   splashscreenStart() async {
     var duration = const Duration(seconds: 5);
     return Timer(duration, () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginJuri()),
-      );
+      Navigator.pushReplacementNamed(context, "/juri");
     });
   }
 

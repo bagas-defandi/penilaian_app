@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:penilaian_app/model/card_carousel.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:penilaian_app/model/card_widget.dart';
-import 'package:penilaian_app/pages/createlomba_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -139,10 +138,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CreateLomba()));
+                        Navigator.pushNamed(context, "/create-lomba");
                       },
                       child: Image.asset('assets/images/icon/button_Add.png'),
                     ),

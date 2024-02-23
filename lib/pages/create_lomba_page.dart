@@ -3,17 +3,16 @@ import 'package:penilaian_app/model/tab_create/tab_deskripsi_create.dart';
 import 'package:penilaian_app/model/tab_create/tab_formpenilaian_create.dart';
 import 'package:penilaian_app/model/tab_create/tab_juri_create.dart';
 import 'package:penilaian_app/model/tab_create/tab_peserta_create.dart';
-import 'package:penilaian_app/pages/nilai_peserta_page.dart';
 import 'package:penilaian_app/theme.dart';
 
-class CreateLombaRevisiPage extends StatefulWidget {
-  const CreateLombaRevisiPage({super.key});
+class CreateLombaPage extends StatefulWidget {
+  const CreateLombaPage({super.key});
 
   @override
-  State<CreateLombaRevisiPage> createState() => _CreateLombaRevisiPageState();
+  State<CreateLombaPage> createState() => _CreateLombaPageState();
 }
 
-class _CreateLombaRevisiPageState extends State<CreateLombaRevisiPage> {
+class _CreateLombaPageState extends State<CreateLombaPage> {
   late List<Widget> tabs = [];
   List<String> items = [
     "Deskripsi",
@@ -140,9 +139,7 @@ class _CreateLombaRevisiPageState extends State<CreateLombaRevisiPage> {
                 horizontal: 0,
                 vertical: 20.0,
               ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -164,17 +161,13 @@ class _CreateLombaRevisiPageState extends State<CreateLombaRevisiPage> {
                   const SizedBox(width: 5),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NilaiPesertaPage()));
+                      Navigator.pushNamed(context, "/nilai-peserta");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: PrimaryColor,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            15), // Set the border radius here
+                        borderRadius: BorderRadius.circular(15),
                       ),
                     ),
                     child: Text(
