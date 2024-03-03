@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:penilaian_app/pages/account_page.dart';
 import 'package:penilaian_app/pages/adminlogin_page.dart';
 import 'package:penilaian_app/pages/create_lomba_page.dart';
 import 'package:penilaian_app/pages/detail_nilai_page.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         "/detail-nilai": (context) => const DetailNilaiPage(),
         "/nilai-peserta": (context) => const NilaiPesertaPage(),
         "/leaderbord": (context) => const LeaderBoard(),
+        "/account-page": (context) => const AccountPage(),
       },
     );
   }

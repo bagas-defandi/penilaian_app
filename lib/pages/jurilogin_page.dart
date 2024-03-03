@@ -41,7 +41,10 @@ class _LoginJuriState extends State<LoginJuri> {
                         style:
                             boldTextStyle3.copyWith(color: NeutralWhiteColor),
                       ),
-                      Image.asset('assets/images/icon/button_push.png')
+                      Icon(
+                        Icons.login,
+                        color: NeutralWhiteColor,
+                      ),
                     ],
                   ),
                 ),

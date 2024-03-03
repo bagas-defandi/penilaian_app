@@ -1,6 +1,10 @@
+import 'dart:js_interop';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginAdmin extends StatefulWidget {
   const LoginAdmin({super.key});
@@ -12,8 +16,32 @@ class LoginAdmin extends StatefulWidget {
 class _LoginAdminState extends State<LoginAdmin> {
   bool passwordHidden = true;
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      Navigator.pushNamed(context, "/home");
+    } on FirebaseAuthException {
+      Fluttertoast.showToast(
+        msg: "Incorrect Email or Password",
+        webBgColor: "NeutralWhiteColor",
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 2,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +88,15 @@ class _LoginAdminState extends State<LoginAdmin> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          // Username Textfield
+
+                          // Email Textfield
                           TextFormField(
-                            controller: _usernameController,
+                            controller: _emailController,
                             validator: (value) => value == null || value.isEmpty
-                                ? 'Username wajib diisi'
+                                ? 'Email wajib diisi'
                                 : null,
                             decoration: InputDecoration(
-                              hintText: 'Username',
+                              hintText: 'Email',
                               contentPadding: const EdgeInsets.all(16),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(
@@ -119,11 +148,7 @@ class _LoginAdminState extends State<LoginAdmin> {
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                                onTap: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    Navigator.pushNamed(context, "/home");
-                                  }
-                                },
+                                onTap: signIn,
                                 child: Container(
                                   width: 100,
                                   padding: const EdgeInsets.all(5.0),

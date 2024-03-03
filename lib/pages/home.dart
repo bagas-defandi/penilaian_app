@@ -51,9 +51,14 @@ class _HomePageState extends State<HomePage> {
                   height: 48,
                   child: Row(
                     children: [
-                      const Image(
-                        image:
-                            AssetImage('assets/images/icon/Profile_icon.png'),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, "/account-page");
+                        },
+                        child: Image(
+                          image:
+                              AssetImage('assets/images/icon/Profile_icon.png'),
+                        ),
                       ),
                       const SizedBox(
                         width: 29,
