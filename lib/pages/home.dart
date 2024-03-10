@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.pushNamed(context, "/account-page");
                         },
-                        child: Image(
+                        child: const Image(
                           image:
                               AssetImage('assets/images/icon/Profile_icon.png'),
                         ),

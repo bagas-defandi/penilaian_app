@@ -7,7 +7,7 @@ import 'package:penilaian_app/pages/home.dart';
 import 'package:penilaian_app/pages/jurilogin_page.dart';
 import 'package:penilaian_app/pages/leaderboard_page.dart';
 import 'package:penilaian_app/pages/nilai_peserta_page.dart';
-import 'package:penilaian_app/pages/tentang_lomba_page.dart';
+import 'package:penilaian_app/pages/tentang_lomba_page2.dart';
 import 'package:penilaian_app/splashscreen.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,7 +32,12 @@ class MyApp extends StatelessWidget {
       title: 'Specto App Demo',
       theme: ThemeData(
         fontFamily: 'Nunito',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromRGBO(106, 90, 224, 1),
+          primary: const Color.fromRGBO(106, 90, 224, 1),
+          secondary: const Color.fromRGBO(0, 24, 51, 1),
+          tertiary: const Color.fromRGBO(248, 248, 248, 1),
+        ),
         useMaterial3: true,
       ),
       home: const SplashScreen(),

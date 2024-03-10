@@ -391,7 +391,7 @@ class _AccountPageState extends State<AccountPage> {
                           onTap: () {
                             FirebaseAuth.instance.signOut().then((value) {
                               print("Signed Out");
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => LoginAdmin()));
