@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/pages/account_page.dart';
 import 'package:penilaian_app/pages/adminlogin_page.dart';
-import 'package:penilaian_app/pages/create_lomba_page.dart';
+import 'package:penilaian_app/pages/create_lomba2_page.dart';
 import 'package:penilaian_app/pages/detail_nilai_page.dart';
 import 'package:penilaian_app/pages/home.dart';
 import 'package:penilaian_app/pages/jurilogin_page.dart';
