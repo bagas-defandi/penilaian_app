@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/pages/account_page.dart';
 import 'package:penilaian_app/pages/adminlogin_page.dart';
-import 'package:penilaian_app/pages/create_lomba2_page.dart';
+import 'package:penilaian_app/pages/create_lomba_page.dart';
 import 'package:penilaian_app/pages/detail_nilai_page.dart';
 import 'package:penilaian_app/pages/home.dart';
 import 'package:penilaian_app/pages/jurilogin_page.dart';
 import 'package:penilaian_app/pages/leaderboard_page.dart';
 import 'package:penilaian_app/pages/nilai_peserta_page.dart';
-import 'package:penilaian_app/pages/tentang_lomba_page2.dart';
+import 'package:penilaian_app/pages/tentang_lomba_page.dart';
 import 'package:penilaian_app/splashscreen.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';

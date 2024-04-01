@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:penilaian_app/pages/nilai_peserta_page.dart';
-import 'package:penilaian_app/theme.dart';
-import 'package:penilaian_app/model/tab_peserta.dart';
-import 'package:penilaian_app/model/tab_juri.dart';
-import 'package:penilaian_app/model/tab_deskripsi.dart';
+import 'package:penilaian_app/components/circle_tab_indicator.dart';
+import 'package:penilaian_app/components/tab_bar_dotted.dart';
 
 class TentangLombaPage extends StatefulWidget {
   const TentangLombaPage({super.key});
@@ -13,161 +10,279 @@ class TentangLombaPage extends StatefulWidget {
 }
 
 class _TentangLombaPageState extends State<TentangLombaPage> {
-  late List<Widget> tabs = [];
-  List<String> items = [
-    "Peserta",
-    "Deskripsi",
-    "Juri",
+  late List<Widget> tabBarViews = [
+    buildPeserta(),
+    buildDeskripsi(),
+    buildJuri(),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    tabs = [
-      const BuildPeserta(),
-      const BuildDeskripsi(),
-      const BuildJuri(),
-    ];
-  }
-
-  int current = 0;
+  final List tabBarTitle = ["Peserta", "Deskripsi", "Juri"];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: PrimaryColor,
-        title: Text(
-          'Tentang Lomba',
-          style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
-        ),
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Image.asset('assets/images/icon/button_back.png'),
-        ),
-        centerTitle: true,
-      ),
-      backgroundColor: PrimaryColor,
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            color: PrimaryColor,
-            child: Container(
-              margin: const EdgeInsets.only(top: 30),
-              decoration: BoxDecoration(
-                color: NeutralWhiteColor,
-                borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    topLeft: Radius.circular(10)),
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
-                    width: double.infinity,
-                    child: Container(
-                      height: 60,
-                      alignment: Alignment.center,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: items.length,
-                        itemBuilder: ((context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                current = index;
-                              });
-                            },
-                            child: AnimatedContainer(
-                              color: NeutralWhiteColor,
-                              duration: const Duration(milliseconds: 300),
-                              margin: const EdgeInsets.all(5),
-                              width: 80,
-                              height: 45,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    items[index],
-                                    style: boldTextStyle3.copyWith(
-                                      color: PrimaryColor,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 7),
-                                  Container(
-                                    width: 12,
-                                    height: 12,
-                                    decoration: current == index
-                                        ? BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: PrimaryColor,
-                                          )
-                                        : BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                              color: PrimaryColor,
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                      child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: tabs[current],
-                  ))
-                ],
+    return DefaultTabController(
+      length: tabBarTitle.length,
+      child: Builder(builder: (BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            leading: BackButton(color: Theme.of(context).colorScheme.tertiary),
+            title: Text(
+              "Tentang Lomba",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
             ),
+            centerTitle: true,
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              color: NeutralWhiteColor,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 0,
-                vertical: 20.0,
-              ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      side: BorderSide(color: PrimaryColor),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          body: Container(
+            margin: const EdgeInsets.only(top: 20, left: 5, right: 5),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.tertiary,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: 40,
+                  margin: const EdgeInsets.only(top: 15),
+                  child: TabBar(
+                    dividerColor: Theme.of(context).colorScheme.tertiary,
+                    indicator: CircleTabIndicator(
+                        color: Theme.of(context).colorScheme.primary,
+                        radius: 6),
+                    labelColor: Theme.of(context).colorScheme.primary,
+                    labelStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
                     ),
-                    child: Text(
-                      "Lihat Nilai Peserta",
-                      style: semiBoldTextStyle1.copyWith(
-                        color: PrimaryColor,
+                    unselectedLabelColor: Theme.of(context).colorScheme.primary,
+                    tabs: tabBarTitle
+                        .map((title) => TabBarDotted(title: title))
+                        .toList(),
+                  ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: tabBarViews,
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
+  Widget buildPeserta() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: DataTable(
+              headingRowColor: MaterialStateColor.resolveWith(
+                  (states) => const Color.fromRGBO(241, 243, 249, 1)),
+              columns: const [
+                DataColumn(
+                  label: Text("Nama Peserta"),
+                ),
+                DataColumn(
+                  label: Text("Keterangan"),
+                ),
+              ],
+              rows: [
+                DataRow(
+                  cells: [
+                    const DataCell(
+                      Text("DWI URFATHUL FITRIA \nUniversitas Jambi"),
+                    ),
+                    DataCell(
+                      Text(
+                        "Sudah Dinilai",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.primary,
+                          decoration: TextDecoration.underline,
+                          decorationColor:
+                              Theme.of(context).colorScheme.primary,
+                        ),
                       ),
+                    ),
+                  ],
+                ),
+                const DataRow(
+                  cells: [
+                    DataCell(
+                      Text("ALDI SUKMA PUTRA \nUniversitas Jambi"),
+                    ),
+                    DataCell(
+                      Text(
+                        "Belum Dinilai",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.red,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          Row(
+            children: [
+              OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                child: Text(
+                  "Lihat Nilai Peserta",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 15),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          15), // Set the border radius here
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NilaiPesertaPage()));
-                    },
+                  child: Text(
+                    "Ajukan Nilai",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDeskripsi() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InkWell(
+              child: Container(
+                width: double.infinity,
+                height: 200,
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(217, 217, 217, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/example_Poster.png'),
+                    Text(
+                      "Gambar Lomba",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 35),
+            const Text(
+              "Lomba Cerdas Cermat",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const Text(
+              "Universitas Jambi",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              "Deskripsi",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(0, 0, 0, 0.6),
+              ),
+            ),
+            const Text(
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod hic velit perspiciatis, labore quos deleniti praesentium ullam dolore fugiat optio. Aliquam pariatur odit animi nesciunt eligendi atque repudiandae perferendis autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod hic velit perspiciatis, labore quos deleniti praesentium ullam dolore fugiat optio. Aliquam pariatur odit animi nesciunt eligendi atque repudiandae perferendis autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod hic velit perspiciatis, labore quos deleniti praesentium ullam dolore fugiat optio. Aliquam pariatur odit animi nesciunt eligendi atque repudiandae perferendis autem.',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(0, 0, 0, 0.6),
+              ),
+              textAlign: TextAlign.justify,
+            ),
+            const SizedBox(height: 40),
+            Row(
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  child: Text(
+                    "Lihat Nilai Peserta",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: PrimaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
@@ -175,15 +290,137 @@ class _TentangLombaPageState extends State<TentangLombaPage> {
                       ),
                     ),
                     child: Text(
-                      "Ajukan nilai",
-                      style: semiBoldTextStyle1.copyWith(
-                        color: NeutralWhiteColor,
+                      "Ajukan Nilai",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildJuri() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: DataTable(
+              headingRowColor: MaterialStateColor.resolveWith(
+                  (states) => const Color.fromRGBO(241, 243, 249, 1)),
+              columns: const [
+                DataColumn(
+                  label: Text("Nama Juri"),
+                ),
+                DataColumn(
+                  label: Text(""),
+                ),
+              ],
+              rows: [
+                DataRow(
+                  cells: [
+                    const DataCell(
+                      Text("RANDI TRINANDA \nUniversitas Jambi"),
+                    ),
+                    DataCell(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          PopupMenuButton(
+                            iconSize: 28,
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(
+                                value: 1,
+                                child: Text("Tes"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                DataRow(
+                  cells: [
+                    const DataCell(
+                      Text("RANDI TRINANDA \nUniversitas Jambi"),
+                    ),
+                    DataCell(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          PopupMenuButton(
+                            iconSize: 28,
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(
+                                value: 1,
+                                child: Text("Tes"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          Row(
+            children: [
+              OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                child: Text(
+                  "Lihat Nilai Peserta",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 15),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          15), // Set the border radius here
+                    ),
+                  ),
+                  child: Text(
+                    "Ajukan Nilai",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
