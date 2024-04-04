@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/theme.dart';
@@ -19,13 +18,21 @@ class _LoginAdminState extends State<LoginAdmin> {
   final _passwordController = TextEditingController();
 
   Future signIn() async {
+    showLoadingCircle();
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      Navigator.pushNamed(context, "/home");
+
+      if (!mounted) return;
+      Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, "/home");
     } on FirebaseAuthException {
+      if (!mounted) return;
+      Navigator.pop(context);
+
       Fluttertoast.showToast(
         msg: "Incorrect Email or Password",
         webBgColor: "NeutralWhiteColor",
@@ -35,9 +42,20 @@ class _LoginAdminState extends State<LoginAdmin> {
     }
   }
 
+  void showLoadingCircle() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+
   @override
   void dispose() {
-    // TODO: implement dispose
+    super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
   }
@@ -69,9 +87,8 @@ class _LoginAdminState extends State<LoginAdmin> {
                 const SizedBox(height: 30),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white, // Set the background color here
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Set the border radius
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),

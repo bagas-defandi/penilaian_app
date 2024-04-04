@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/theme.dart';
-import 'package:penilaian_app/model/tab_leaderboard_umum.dart';
-import 'package:penilaian_app/model/tab_leaderboard_detail.dart';
+import 'package:penilaian_app/widgets/tab_leaderboard_umum.dart';
+import 'package:penilaian_app/widgets/tab_leaderboard_detail.dart';
 
 class LeaderBoard extends StatefulWidget {
   const LeaderBoard({super.key});

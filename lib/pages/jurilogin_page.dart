@@ -66,9 +66,8 @@ class _LoginJuriState extends State<LoginJuri> {
                 const SizedBox(height: 50),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white, // Set the background color here
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Set the border radius
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -91,7 +90,7 @@ class _LoginJuriState extends State<LoginJuri> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
                                 20.0,
-                              ), // Set the border radius
+                              ),
                             ),
                           ),
                           style: const TextStyle(
@@ -111,8 +110,8 @@ class _LoginJuriState extends State<LoginJuri> {
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pushReplacementNamed(
-                                    context, "/home");
+                                // Navigator.pushReplacementNamed(
+                                //     context, "/home");
                               },
                               child: Container(
                                 width: 100,

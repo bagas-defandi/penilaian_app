@@ -392,9 +392,11 @@ class _AccountPageState extends State<AccountPage> {
                             FirebaseAuth.instance.signOut().then((value) {
                               print("Signed Out");
                               Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginAdmin()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginAdmin(),
+                                ),
+                              );
                             });
                           },
                           child: Icon(Icons.chevron_right),
