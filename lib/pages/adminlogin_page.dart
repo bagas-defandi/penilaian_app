@@ -28,7 +28,7 @@ class _LoginAdminState extends State<LoginAdmin> {
 
       if (!mounted) return;
       Navigator.pop(context);
-      Navigator.pushReplacementNamed(context, "/home");
+      Navigator.pushReplacementNamed(context, "/auth");
     } on FirebaseAuthException {
       if (!mounted) return;
       Navigator.pop(context);

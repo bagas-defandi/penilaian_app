@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/pages/account_page.dart';
 import 'package:penilaian_app/pages/adminlogin_page.dart';
+import 'package:penilaian_app/pages/auth_page.dart';
 import 'package:penilaian_app/pages/create_lomba_page.dart';
 import 'package:penilaian_app/pages/detail_nilai_page.dart';
 import 'package:penilaian_app/pages/home.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const SplashScreen(),
       routes: {
+        "/auth": (context) => const AuthPage(),
         "/home": (context) => const HomePage(),
         "/admin": (context) => const LoginAdmin(),
         "/juri": (context) => const LoginJuri(),

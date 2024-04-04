@@ -12,6 +12,11 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  void logout() {
+    FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, "/auth");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -388,18 +393,8 @@ class _AccountPageState extends State<AccountPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: GestureDetector(
-                          onTap: () {
-                            FirebaseAuth.instance.signOut().then((value) {
-                              print("Signed Out");
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginAdmin(),
-                                ),
-                              );
-                            });
-                          },
-                          child: Icon(Icons.chevron_right),
+                          onTap: logout,
+                          child: const Icon(Icons.chevron_right),
                         ),
                       ),
                     ),
