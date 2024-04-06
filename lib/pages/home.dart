@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:penilaian_app/components/app_drawer.dart';
 import 'package:penilaian_app/widgets/card_carousel.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:penilaian_app/widgets/card_widget.dart';
@@ -26,23 +27,20 @@ class _HomePageState extends State<HomePage> {
       ),
       child: SafeArea(
         child: Scaffold(
+          drawer: const AppDrawer(),
           backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: Colors.transparent,
+            title: Text(
+              'Home',
+              style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
+            ),
+            centerTitle: true,
+          ),
           body: Column(
             children: [
-              const SizedBox(
-                height: 50,
-              ),
-              // TOP BAR
-              Center(
-                child: Text(
-                  'Home',
-                  style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
-                ),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-
+              const SizedBox(height: 20),
               // Profile Section
               Center(
                 // ignore: sized_box_for_whitespace

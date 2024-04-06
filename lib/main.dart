@@ -9,6 +9,7 @@ import 'package:penilaian_app/pages/jurilogin_page.dart';
 import 'package:penilaian_app/pages/leaderboard_page.dart';
 import 'package:penilaian_app/pages/nilai_peserta_page.dart';
 import 'package:penilaian_app/pages/tentang_lomba_page.dart';
+import 'package:penilaian_app/pages/juri_page.dart';
 import 'package:penilaian_app/splashscreen.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         "/auth": (context) => const AuthPage(),
+        "/manage-juri": (context) => const JuriPage(),
         "/home": (context) => const HomePage(),
         "/admin": (context) => const LoginAdmin(),
         "/juri": (context) => const LoginJuri(),
