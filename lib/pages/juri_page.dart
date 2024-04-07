@@ -17,7 +17,12 @@ class JuriPage extends StatelessWidget {
           Text('Tes'),
         ],
       ),
-      // floatingActionButton: ,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/tambah-juri");
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

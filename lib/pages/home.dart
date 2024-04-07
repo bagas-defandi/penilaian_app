@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/components/app_drawer.dart';
 import 'package:penilaian_app/widgets/card_carousel.dart';
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                                 color: NeutralWhiteColor),
                           ),
                           Text(
-                            '(Nama Lengkap Juri)',
+                            user.email ?? '',
                             style: extraBoldTextStyle1.copyWith(
                                 color: NeutralWhiteColor),
                           ),

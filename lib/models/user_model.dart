@@ -1,13 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class User {
+class UserModel {
   final String id;
   final String nama;
   final String email;
   final String role;
 
-  User({
+  UserModel({
     required this.id,
     required this.nama,
     required this.email,
@@ -23,8 +22,8 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
       id: map['id'] as String,
       nama: map['nama'] as String,
       email: map['email'] as String,
@@ -32,13 +31,20 @@ class User {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      'nama': nama,
+      'email': email,
+      'role': role,
+    };
+  }
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'User(id: $id, nama: $nama, email: $email, role: $role)';
+    return 'UserModel(id: $id, nama: $nama, email: $email, role: $role)';
   }
 }
