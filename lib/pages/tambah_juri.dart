@@ -64,31 +64,43 @@ class _TambahJuriPageState extends State<TambahJuriPage> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      // Perform registration logic here
-                      String email = emailController.text.trim();
-                      String fullName = fullNameController.text.trim();
-                      String password = passwordController.text;
+                      showLoadingCircle();
+                      try {
+                        // Perform registration logic here
+                        String email = emailController.text.trim();
+                        String fullName = fullNameController.text.trim();
+                        String password = passwordController.text;
 
-                      final userCredential = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                        email: email,
-                        password: password,
-                      );
+                        final userCredential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                          email: email,
+                          password: password,
+                        );
 
-                      final newUser = UserModel(
-                        id: userCredential.user!.uid,
-                        nama: fullName,
-                        email: email,
-                        role: 'Juri',
-                      );
+                        final newUser = UserModel(
+                          uid: userCredential.user!.uid,
+                          nama: fullName,
+                          email: email,
+                          role: 'juri',
+                        );
 
-                      firestoreService.addJuri(newUser);
+                        firestoreService.addJuri(newUser);
 
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: "bagas@gmail.com", password: 'bagasaja');
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: "admin.lkpm@gmail.com",
+                            password: 'admin123');
 
-                      // ignore: use_build_context_synchronously
-                      Navigator.pop(context);
+                        if (context.mounted) {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        }
+                      } on FirebaseAuthException catch (e) {
+                        if (context.mounted) {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        }
+                        debugPrint(e.toString());
+                      }
                     }
                   },
                   child: const Text('Register'),
@@ -98,6 +110,17 @@ class _TambahJuriPageState extends State<TambahJuriPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void showLoadingCircle() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

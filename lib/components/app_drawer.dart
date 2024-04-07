@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key});
+  const AppDrawer({super.key, this.isAdmin = true});
+
+  final bool isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +35,23 @@ class AppDrawer extends StatelessWidget {
               Navigator.pushReplacementNamed(context, "/home");
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Juri'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushReplacementNamed(context, "/manage-juri");
-            },
-          ),
+          (isAdmin)
+              ? ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text('Juri'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, "/manage-juri");
+                  },
+                )
+              : Container(),
           ListTile(
             leading: const Icon(Icons.logout_outlined),
             title: const Text('Logout'),
-            onTap: () {},
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushReplacementNamed(context, "/auth");
+            },
           ),
         ],
       ),

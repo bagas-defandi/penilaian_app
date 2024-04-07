@@ -18,4 +18,9 @@ class FirestoreService {
   Future<void> addJuri(UserModel userModel) {
     return users.add(userModel.toJson());
   }
+
+  Future<QueryDocumentSnapshot> getUserInfo(String uid) async {
+    final snapshot = await users.where("uid", isEqualTo: uid).get();
+    return snapshot.docs.first;
+  }
 }

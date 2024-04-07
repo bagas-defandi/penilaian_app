@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 class UserModel {
-  final String id;
+  final String uid;
   final String nama;
   final String email;
   final String role;
 
   UserModel({
-    required this.id,
+    required this.uid,
     required this.nama,
     required this.email,
     required this.role,
@@ -15,7 +15,7 @@ class UserModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
+      'uid': uid,
       'nama': nama,
       'email': email,
       'role': role,
@@ -24,7 +24,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: map['id'] as String,
+      uid: map['id'] as String,
       nama: map['nama'] as String,
       email: map['email'] as String,
       role: map['role'] as String,
@@ -33,7 +33,7 @@ class UserModel {
 
   Map<String, Object?> toJson() {
     return {
-      'id': id,
+      'uid': uid,
       'nama': nama,
       'email': email,
       'role': role,
@@ -45,6 +45,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, nama: $nama, email: $email, role: $role)';
+    return 'UserModel(uid: $uid, nama: $nama, email: $email, role: $role)';
   }
 }
