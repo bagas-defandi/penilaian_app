@@ -56,42 +56,37 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const SizedBox(height: 20),
                     // Profile Section
-                    Center(
-                      child: SizedBox(
-                        width: 234,
-                        height: 48,
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  "/account-page",
-                                );
-                              },
-                              child: const Image(
-                                image: AssetImage(
-                                    'assets/images/icon/Profile_icon.png'),
-                              ),
-                            ),
-                            const SizedBox(width: 29),
-                            Column(
-                              children: [
-                                Text(
-                                  'Selamat Datang!',
-                                  style: semiBoldTextStyle1.copyWith(
-                                      color: NeutralWhiteColor),
-                                ),
-                                Text(
-                                  snapshot.data?['nama'],
-                                  style: extraBoldTextStyle1.copyWith(
-                                      color: NeutralWhiteColor),
-                                ),
-                              ],
-                            )
-                          ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              "/account-page",
+                            );
+                          },
+                          child: const Image(
+                            image: AssetImage(
+                                'assets/images/icon/Profile_icon.png'),
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 29),
+                        Column(
+                          children: [
+                            Text(
+                              'Selamat Datang!',
+                              style: semiBoldTextStyle1.copyWith(
+                                  color: NeutralWhiteColor),
+                            ),
+                            Text(
+                              snapshot.data?['nama'],
+                              style: extraBoldTextStyle1.copyWith(
+                                  color: NeutralWhiteColor),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
                     const SizedBox(height: 18),
 
