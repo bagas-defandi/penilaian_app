@@ -1,10 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/components/app_drawer.dart';
 import 'package:penilaian_app/services/firestore.dart';
 import 'package:penilaian_app/widgets/card_carousel.dart';
 import 'package:penilaian_app/theme.dart';
-import 'package:penilaian_app/widgets/card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -93,9 +93,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 18,
-                    ),
+                    const SizedBox(height: 18),
 
                     // SEARCH BOX
                     Container(
@@ -127,9 +125,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 43,
-                    ),
+                    const SizedBox(height: 43),
 
                     // CAROUSEL SECTION
                     const CardCarousel(),
@@ -175,7 +171,92 @@ class _HomePageState extends State<HomePage> {
                         color: NeutralWhiteColor,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                          child: CardWidget(),
+                          child: StreamBuilder(
+                            stream: firestoreService.getLombasStream(),
+                            builder: (context, snapshot) {
+                              List lombasList = snapshot.data?.docs ?? [];
+                              int jumlahLomba = lombasList.length;
+
+                              if (lombasList.isEmpty) {
+                                return const Center(
+                                  child: Text("Belum ada lomba yang dibuat"),
+                                );
+                              }
+
+                              return SingleChildScrollView(
+                                child: SizedBox(
+                                  height: jumlahLomba.isEven
+                                      ? (jumlahLomba / 2) * 195
+                                      : ((jumlahLomba / 2) + 0.5) * 195,
+                                  child: GridView.builder(
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 25,
+                                      crossAxisSpacing: 20,
+                                      // mainAxisExtent: 210,
+                                    ),
+                                    itemCount: jumlahLomba,
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      DocumentSnapshot lomba =
+                                          lombasList[index];
+                                      return InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          padding: const EdgeInsets.all(12),
+                                          decoration: const BoxDecoration(
+                                            color:
+                                                Color.fromRGBO(201, 84, 84, 1),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(
+                                                  "assets/images/example.png"),
+                                              const SizedBox(height: 15),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Flexible(
+                                                    child: Text(
+                                                      lomba['judul'],
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                      softWrap: false,
+                                                      style: const TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {},
+                                                    child: Icon(
+                                                      Icons.more_vert,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .tertiary,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                     )
