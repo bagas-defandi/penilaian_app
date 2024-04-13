@@ -15,7 +15,10 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
   final _jumlahPesertaController = TextEditingController();
   int jumlahPeserta = 1;
 
-  List<TextEditingController> _kriteriaControllers = [TextEditingController()];
+  final List<TextEditingController> _kriteriaControllers = [
+    TextEditingController()
+  ];
+
   List<String> selectedTipeNilai = [""];
 
   late Map<String, String> juriAndDocId;
@@ -111,15 +114,22 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
                   .map((controller) => controller.text)
                   .toList();
 
+              List<Map<String, dynamic>> kriteria = List.generate(
+                allKriteria.length,
+                (index) => {
+                  'judul': allKriteria[index],
+                  'tipe': selectedTipeNilai[index].toLowerCase(),
+                },
+              );
+
               Map<String, dynamic> lombaMap = {
                 "judul": _judulController.text,
                 "penyelenggara": _penyelenggaraController.text,
                 "deskripsi": _deskripsiController.text,
                 "peserta": allPeserta,
                 "juri": allJuriId,
-                "hasNilai": false,
-                "kriteria_penilaian": allKriteria,
-                "kriteria_type": selectedTipeNilai,
+                "hasIsiKriteria": false,
+                "kriteria": kriteria,
               };
               firestoreService.addLomba(lombaMap);
               Navigator.pop(context);
