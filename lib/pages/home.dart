@@ -232,7 +232,9 @@ class _HomePageState extends State<HomePage> {
                                                     ),
                                                   ),
                                                   GestureDetector(
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      bottomSheet(lomba);
+                                                    },
                                                     child: Icon(
                                                       Icons.more_vert,
                                                       color: Theme.of(context)
@@ -260,6 +262,43 @@ class _HomePageState extends State<HomePage> {
               );
             }
           }),
+    );
+  }
+
+  Future bottomSheet(DocumentSnapshot lomba) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Wrap(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 18, bottom: 5),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  lomba['judul'],
+                  style: const TextStyle(fontSize: 20),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.edit),
+              onTap: () {},
+              title: const Text('Edit Lomba'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete),
+              onTap: () {},
+              title: const Text('Hapus Lomba'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.add),
+              onTap: () {},
+              title: const Text('Tambah Form Penilaian'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
