@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:penilaian_app/services/firestore.dart';
@@ -14,10 +15,15 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
   final _jumlahPesertaController = TextEditingController();
   int jumlahPeserta = 1;
 
-  List<TextEditingController> _juriControllers = [TextEditingController()];
-  final _jumlahJuriController = TextEditingController();
-  int jumlahJuri = 1;
+  final List<TextEditingController> _kriteriaControllers = [
+    TextEditingController()
+  ];
 
+  List<String> selectedTipeNilai = [""];
+
+  late Map<String, String> juriAndDocId;
+  late List<String> juriName = [""];
+  List<String> selectedJuri = [""];
   int currentStep = 0;
 
   final _judulController = TextEditingController();
@@ -28,12 +34,21 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   final FirestoreService firestoreService = FirestoreService();
 
+  getJuriAndDocID() async {
+    var data = await firestoreService.getJuriAndDocID();
+    setState(() {
+      juriAndDocId = data;
+      juriName = data.keys.toList();
+    });
+  }
+
   void changeJumlahPeserta(value) {
-    if (value != "") {
+    if (value != "" && int.parse(value) <= 50) {
       setState(() {
         jumlahPeserta = int.parse(value);
         _pesertaControllers = [];
@@ -48,27 +63,12 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
     }
   }
 
-  void changeJumlahJuri(value) {
-    if (value != "") {
-      setState(() {
-        jumlahJuri = int.parse(value);
-        _juriControllers = [];
-        _juriControllers =
-            List.generate(jumlahJuri, (index) => TextEditingController());
-      });
-    } else {
-      setState(() {
-        jumlahJuri = 0;
-        _juriControllers = [];
-      });
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     _jumlahPesertaController.text = jumlahPeserta.toString();
-    _jumlahJuriController.text = jumlahJuri.toString();
+    getJuriAndDocID();
+    _kriteriaControllers[0].text = 'Kriteria Penilaian';
   }
 
   @override
@@ -103,20 +103,33 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
             final isLastStep = currentStep == getSteps().length - 1;
             if (isLastStep) {
               // send data to server
-              List<String> allJuri = _juriControllers
-                  .map((controller) => controller.text)
-                  .toList();
-
               List<String> allPeserta = _pesertaControllers
                   .map((controller) => controller.text)
                   .toList();
+
+              List<String?> allJuriId =
+                  selectedJuri.map((juri) => juriAndDocId[juri]).toList();
+
+              List<String> allKriteria = _kriteriaControllers
+                  .map((controller) => controller.text)
+                  .toList();
+
+              List<Map<String, dynamic>> kriteria = List.generate(
+                allKriteria.length,
+                (index) => {
+                  'judul': allKriteria[index],
+                  'tipe': selectedTipeNilai[index].toLowerCase(),
+                },
+              );
 
               Map<String, dynamic> lombaMap = {
                 "judul": _judulController.text,
                 "penyelenggara": _penyelenggaraController.text,
                 "deskripsi": _deskripsiController.text,
                 "peserta": allPeserta,
-                "juri": allJuri,
+                "juri": allJuriId,
+                "hasIsiKriteria": false,
+                "kriteria": kriteria,
               };
               firestoreService.addLomba(lombaMap);
               Navigator.pop(context);
@@ -267,8 +280,9 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
                       onChanged: (value) => changeJumlahPeserta(value),
                       validator: (value) => value == null ||
                               value.isEmpty ||
-                              int.parse(value) == 0
-                          ? 'Jumlah Peserta harus lebih dari 0'
+                              int.parse(value) <= 0 ||
+                              int.parse(value) >= 50
+                          ? 'Jumlah Peserta harus 1 - 50'
                           : null,
                       decoration: InputDecoration(
                         hintText: 'Masukkan Jumlah Peserta',
@@ -370,109 +384,146 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 15, right: 15),
-                child: Text("Jumlah Juri",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Color(0xFF2E384E),
-                    )),
+              DropdownSearch<String>.multiSelection(
+                popupProps: PopupPropsMultiSelection.menu(
+                  searchFieldProps: TextFieldProps(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(16),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      prefixIcon: const Icon(Icons.search),
+                    ),
+                  ),
+                  showSearchBox: true,
+                  searchDelay: Durations.short2,
+                ),
+                dropdownDecoratorProps: const DropDownDecoratorProps(
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "Pilih Juri",
+                  ),
+                ),
+                items: juriName,
+                validator: (List<String>? item) {
+                  if (item!.isEmpty) {
+                    return "Juri Harus di isi";
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  selectedJuri = value;
+                },
               ),
-              const SizedBox(height: 15),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _jumlahJuriController,
-                      onChanged: (value) => changeJumlahJuri(value),
-                      validator: (value) => value == null ||
-                              value.isEmpty ||
-                              int.parse(value) == 0
-                          ? 'Jumlah Juri harus lebih dari 0'
-                          : null,
-                      decoration: InputDecoration(
-                        hintText: 'Masukkan Jumlah Juri',
-                        contentPadding: const EdgeInsets.all(16),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                      keyboardType: const TextInputType.numberWithOptions(),
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    ),
+            ],
+          ),
+        ),
+      ),
+      Step(
+        state: currentStep > 3 ? StepState.complete : StepState.indexed,
+        isActive: currentStep >= 3,
+        title: const Text("Penilaian Lomba"),
+        content: Form(
+          key: formKeys[3],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton.filled(
+                  onPressed: () {
+                    setState(() {
+                      _kriteriaControllers.add(TextEditingController());
+                      selectedTipeNilai.add("");
+                    });
+                  },
+                  iconSize: 30,
+                  icon: const Icon(
+                    Icons.add,
+                    color: Colors.white,
                   ),
-                  const SizedBox(width: 7),
-                  IconButton.filled(
-                    onPressed: () {
-                      setState(() {
-                        _juriControllers.add(TextEditingController());
-                        jumlahJuri++;
-                        _jumlahJuriController.text = jumlahJuri.toString();
-                      });
-                    },
-                    iconSize: 30,
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+                ),
               ),
               ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: _juriControllers.length,
+                itemCount: _kriteriaControllers.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Row(
+                  return Container(
+                    margin: const EdgeInsets.only(top: 15),
+                    padding: const EdgeInsets.only(
+                        left: 15, right: 15, top: 5, bottom: 25),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: _juriControllers[index],
-                            validator: (value) => value == null || value.isEmpty
-                                ? 'Juri ${index + 1} wajib diisi'
-                                : null,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.tertiary),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFF2E384E),
-                              contentPadding: const EdgeInsets.all(16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Juri ${index + 1}",
-                              hintStyle: const TextStyle(
-                                  color: Color.fromARGB(255, 132, 140, 155)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Kriteria & Tipe Nilai ${index + 1}'),
+                            PopupMenuButton(
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  child: const Text("Hapus Kriteria"),
+                                  onTap: () {
+                                    setState(() {
+                                      _kriteriaControllers[index].clear();
+                                      _kriteriaControllers[index].dispose();
+                                      _kriteriaControllers.removeAt(index);
+                                      selectedTipeNilai.removeAt(index);
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        TextFormField(
+                          controller: _kriteriaControllers[index],
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Kriteria ${index + 1} wajib diisi'
+                              : null,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.tertiary),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFF2E384E),
+                            contentPadding: const EdgeInsets.all(16),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            hintText: "Kriteria ${index + 1}",
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 132, 140, 155)),
+                          ),
+                        ),
+                        const SizedBox(height: 7),
+                        DropdownSearch<String>(
+                          items: const [
+                            "Per Kategori",
+                            "Ada & Tidak ada",
+                            "Individu"
+                          ],
+                          dropdownDecoratorProps: const DropDownDecoratorProps(
+                            dropdownSearchDecoration: InputDecoration(
+                              labelText: "Pilih Tipe Nilai",
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _juriControllers[index].clear();
-                              _juriControllers[index].dispose();
-                              _juriControllers.removeAt(index);
-                              jumlahJuri--;
-                              _jumlahJuriController.text =
-                                  jumlahJuri.toString();
-                            });
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return "Tipe Nilai ${index + 1} Harus di isi";
+                            }
+                            return null;
                           },
-                          child: const Icon(
-                            Icons.delete,
-                            color: Color(0xFF6B74D6),
-                            size: 35,
-                          ),
-                        )
+                          onChanged: (String? value) {
+                            if (value != null || value!.isNotEmpty) {
+                              selectedTipeNilai[index] = value;
+                            }
+                          },
+                        ),
                       ],
                     ),
                   );
@@ -544,11 +595,34 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
                   color: Color(0xFF2E384E),
                 ),
               ),
-              ..._juriControllers.asMap().entries.map((e) {
+              ...selectedJuri.asMap().entries.map((e) {
                 int index = e.key;
-                String juri = e.value.text;
+                String juri = e.value;
                 return Text('${index + 1}. $juri');
               }).toList(),
+              const SizedBox(height: 15),
+              const Text(
+                "Penilaian Lomba",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Color(0xFF2E384E),
+                ),
+              ),
+              ..._kriteriaControllers.asMap().entries.map((e) {
+                int index = e.key;
+                String kriteria = e.value.text;
+                String tipeNilai = selectedTipeNilai[index];
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('${index + 1}. $kriteria'),
+                    Text('    Tipe Nilai: $tipeNilai'),
+                  ],
+                );
+              }).toList(),
+              const SizedBox(height: 5),
             ],
           ),
         ),

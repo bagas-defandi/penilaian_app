@@ -23,4 +23,14 @@ class FirestoreService {
     final snapshot = await users.where("uid", isEqualTo: uid).get();
     return snapshot.docs.first;
   }
+
+  Future<Map<String, String>> getJuriAndDocID() async {
+    final snapshot = await users.where("role", isEqualTo: "juri").get();
+    List<String> nama =
+        snapshot.docs.map((doc) => doc['nama'] as String).toList();
+    List<String> docId = snapshot.docs.map((doc) => doc.id).toList();
+
+    final Map<String, String> juriAndDocId = Map.fromIterables(nama, docId);
+    return juriAndDocId;
+  }
 }
