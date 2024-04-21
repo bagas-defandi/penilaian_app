@@ -4,6 +4,7 @@ import 'package:penilaian_app/pages/adminlogin_page.dart';
 import 'package:penilaian_app/pages/auth_page.dart';
 import 'package:penilaian_app/pages/create_lomba_page.dart';
 import 'package:penilaian_app/pages/detail_nilai_page.dart';
+import 'package:penilaian_app/pages/form_penilaian_page.dart';
 import 'package:penilaian_app/pages/home.dart';
 import 'package:penilaian_app/pages/jurilogin_page.dart';
 import 'package:penilaian_app/pages/leaderboard_page.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
         "/nilai-peserta": (context) => const NilaiPesertaPage(),
         "/leaderbord": (context) => const LeaderBoard(),
         "/account-page": (context) => const AccountPage(),
+        "/form-penilaian": (context) => const FormPenilaianPage(),
       },
     );
   }

@@ -293,7 +293,14 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.add),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/form-penilaian", arguments: {
+                  'id': lomba.id,
+                  'judul': lomba['judul'],
+                  'kriteria': lomba['kriteria'],
+                });
+              },
               title: const Text('Tambah Form Penilaian'),
             ),
           ],
