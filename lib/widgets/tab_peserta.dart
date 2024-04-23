@@ -34,9 +34,9 @@ class _BuildPesertaState extends State<BuildPeserta> {
                   Text(
                     "Sudah Dinilai",
                     style: regularTextStyle4.copyWith(
-                      color: PrimaryColor,
+                      color: primaryColor,
                       decoration: TextDecoration.underline,
-                      decorationColor: PrimaryColor,
+                      decorationColor: primaryColor,
                     ),
                   ),
                 ),

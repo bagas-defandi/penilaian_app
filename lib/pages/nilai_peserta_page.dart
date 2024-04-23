@@ -13,10 +13,10 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: PrimaryColor,
+        backgroundColor: primaryColor,
         title: Text(
           'Nilai Peserta',
-          style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
+          style: boldtTextStyle1.copyWith(color: neutralWhiteColor),
         ),
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
@@ -24,16 +24,16 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
         ),
         centerTitle: true,
       ),
-      backgroundColor: PrimaryColor,
+      backgroundColor: primaryColor,
       body: Container(
-        color: NeutralWhiteColor,
+        color: neutralWhiteColor,
         width: double.infinity,
         child: Column(
           children: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 11),
               width: double.infinity,
-              color: PrimaryColor,
+              color: primaryColor,
               child: Column(
                 children: [
                   Text(
@@ -41,7 +41,7 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w800,
-                      color: NeutralWhiteColor,
+                      color: neutralWhiteColor,
                     ),
                   ),
                   Text(
@@ -49,7 +49,7 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
-                      color: NeutralWhiteColor,
+                      color: neutralWhiteColor,
                     ),
                   ),
                 ],
@@ -115,12 +115,12 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            side: BorderSide(color: PrimaryColor),
+                            side: BorderSide(color: primaryColor),
                           ),
                           child: Text(
                             "Batal",
                             style: boldTextStyle3.copyWith(
-                              color: PrimaryColor,
+                              color: primaryColor,
                               fontSize: 16,
                             ),
                           ),
@@ -131,7 +131,7 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: PrimaryColor,
+                            backgroundColor: primaryColor,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
@@ -141,7 +141,7 @@ class _NilaiPesertaPageState extends State<NilaiPesertaPage> {
                           child: Text(
                             "Selesai",
                             style: boldTextStyle3.copyWith(
-                              color: NeutralWhiteColor,
+                              color: neutralWhiteColor,
                               fontSize: 16,
                             ),
                           ),

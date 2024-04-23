@@ -14,7 +14,7 @@ class _TabDetailState extends State<TabDetail> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
-        color: NeutralWhiteColor,
+        color: neutralWhiteColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),

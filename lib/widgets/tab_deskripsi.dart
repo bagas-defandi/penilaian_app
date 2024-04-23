@@ -33,7 +33,7 @@ class _BuildDeskripsiState extends State<BuildDeskripsi> {
                   Text(
                     "Gambar Lomba",
                     style: extraBoldTextStyle2.copyWith(
-                      color: PrimaryColor,
+                      color: primaryColor,
                     ),
                   ),
                 ],

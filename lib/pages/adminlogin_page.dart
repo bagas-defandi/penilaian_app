@@ -35,7 +35,7 @@ class _LoginAdminState extends State<LoginAdmin> {
 
       Fluttertoast.showToast(
         msg: "Incorrect Email or Password",
-        webBgColor: "NeutralWhiteColor",
+        webBgColor: "neutralWhiteColor",
         gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 2,
       );
@@ -78,12 +78,8 @@ class _LoginAdminState extends State<LoginAdmin> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 105,
-                ),
-                Image.asset(
-                  'assets/images/img_page1.png',
-                ),
+                const SizedBox(height: 105),
+                Image.asset('assets/images/img_page1.png'),
                 const SizedBox(height: 30),
                 Container(
                   decoration: BoxDecoration(
@@ -169,15 +165,15 @@ class _LoginAdminState extends State<LoginAdmin> {
                                   width: 100,
                                   padding: const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
-                                      color: PrimaryColor,
+                                      color: primaryColor,
                                       border:
-                                          Border.all(color: NeutralDarkColor),
+                                          Border.all(color: neutralDarkColor),
                                       borderRadius: BorderRadius.circular(50)),
                                   child: Center(
                                     child: Text(
                                       "Masuk",
                                       style: boldTextStyle3.copyWith(
-                                        color: NeutralWhiteColor,
+                                        color: neutralWhiteColor,
                                       ),
                                     ),
                                   ),
@@ -198,7 +194,7 @@ class _LoginAdminState extends State<LoginAdmin> {
                                 TextSpan(
                                   text: "Juri",
                                   style: TextStyle(
-                                    color: PrimaryColor,
+                                    color: primaryColor,
                                     decoration: TextDecoration.underline,
                                   ),
                                   recognizer: TapGestureRecognizer()

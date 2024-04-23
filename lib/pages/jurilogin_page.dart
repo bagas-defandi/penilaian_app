@@ -39,11 +39,11 @@ class _LoginJuriState extends State<LoginJuri> {
                       Text(
                         'Login Admin!',
                         style:
-                            boldTextStyle3.copyWith(color: NeutralWhiteColor),
+                            boldTextStyle3.copyWith(color: neutralWhiteColor),
                       ),
                       Icon(
                         Icons.login,
-                        color: NeutralWhiteColor,
+                        color: neutralWhiteColor,
                       ),
                     ],
                   ),
@@ -117,14 +117,14 @@ class _LoginJuriState extends State<LoginJuri> {
                                 width: 100,
                                 padding: const EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
-                                    color: PrimaryColor,
-                                    border: Border.all(color: NeutralDarkColor),
+                                    color: primaryColor,
+                                    border: Border.all(color: neutralDarkColor),
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Center(
                                   child: Text(
                                     "Masuk",
                                     style: boldTextStyle3.copyWith(
-                                        color: NeutralWhiteColor),
+                                        color: neutralWhiteColor),
                                   ),
                                 ),
                               ),
@@ -147,7 +147,7 @@ class _LoginJuriState extends State<LoginJuri> {
                                 text: "Admin",
                                 style: TextStyle(
                                   decoration: TextDecoration.underline,
-                                  color: PrimaryColor,
+                                  color: primaryColor,
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {

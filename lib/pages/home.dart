@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   backgroundColor: Colors.transparent,
                   title: Text(
                     'Home',
-                    style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
+                    style: boldtTextStyle1.copyWith(color: neutralWhiteColor),
                   ),
                   centerTitle: true,
                 ),
@@ -77,12 +77,12 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               'Selamat Datang!',
                               style: semiBoldTextStyle1.copyWith(
-                                  color: NeutralWhiteColor),
+                                  color: neutralWhiteColor),
                             ),
                             Text(
                               snapshot.data?['nama'],
                               style: extraBoldTextStyle1.copyWith(
-                                  color: NeutralWhiteColor),
+                                  color: neutralWhiteColor),
                             ),
                           ],
                         )
@@ -102,8 +102,8 @@ class _HomePageState extends State<HomePage> {
                         child: TextField(
                           controller: _searchController,
                           style: lightTextStyle1.copyWith(
-                              color: NeutralWhiteColor),
-                          cursorColor: PrimaryColor,
+                              color: neutralWhiteColor),
+                          cursorColor: primaryColor,
                           // onChanged: (query) {
                           //   _performSearch(query);
                           // },
@@ -111,11 +111,11 @@ class _HomePageState extends State<HomePage> {
                               border: InputBorder.none,
                               icon: Icon(
                                 Icons.search,
-                                color: NeutralWhiteColor.withOpacity(0.5),
+                                color: neutralWhiteColor.withOpacity(0.5),
                               ),
                               hintText: "Cari Lomba",
                               hintStyle: lightTextStyle1.copyWith(
-                                  color: NeutralWhiteColor.withOpacity(0.5),
+                                  color: neutralWhiteColor.withOpacity(0.5),
                                   fontSize: 14)),
                         ),
                       ),
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                     // LOMBA LAINNYA SECTION
                     Container(
                       decoration: BoxDecoration(
-                        color: NeutralWhiteColor,
+                        color: neutralWhiteColor,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         margin: const EdgeInsets.only(top: 0),
                         width: screenWidth,
-                        color: NeutralWhiteColor,
+                        color: neutralWhiteColor,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                           child: StreamBuilder(

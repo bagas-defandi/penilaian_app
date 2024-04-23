@@ -52,10 +52,10 @@ class _CreatePenilaianState extends State<CreatePenilaian> {
                     child: Text(
                       'Tambah Form Penilaian',
                       style: semiBoldTextStyle1.copyWith(
-                          color: NeutralWhiteColor, fontSize: 10),
+                          color: neutralWhiteColor, fontSize: 10),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(PrimaryColor),
+                      backgroundColor: MaterialStateProperty.all(primaryColor),
                       elevation: MaterialStateProperty.all(3),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
@@ -72,10 +72,10 @@ class _CreatePenilaianState extends State<CreatePenilaian> {
                     child: Text(
                       'Tambah Form Waktu',
                       style: semiBoldTextStyle1.copyWith(
-                          color: NeutralWhiteColor, fontSize: 10),
+                          color: neutralWhiteColor, fontSize: 10),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(PrimaryColor),
+                      backgroundColor: MaterialStateProperty.all(primaryColor),
                       elevation: MaterialStateProperty.all(3),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
