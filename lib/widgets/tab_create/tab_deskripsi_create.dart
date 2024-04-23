@@ -34,7 +34,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
                     Text(
                       "Gambar Lomba",
                       style: extraBoldTextStyle2.copyWith(
-                        color: PrimaryColor,
+                        color: primaryColor,
                       ),
                     ),
                   ],
@@ -68,7 +68,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
                 ),
               ),
               style: const TextStyle(color: Colors.black),
-              cursorColor: NeutralWhiteColor,
+              cursorColor: neutralWhiteColor,
             ),
             const SizedBox(height: 9),
             const Text(
@@ -97,7 +97,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
                 ),
               ),
               style: const TextStyle(color: Colors.black),
-              cursorColor: NeutralWhiteColor,
+              cursorColor: neutralWhiteColor,
             ),
             const SizedBox(height: 9),
             const Text(
@@ -126,7 +126,7 @@ class _BuildDeskripsiCreateState extends State<BuildDeskripsiCreate> {
                 ),
               ),
               style: const TextStyle(color: Colors.black),
-              cursorColor: NeutralWhiteColor,
+              cursorColor: neutralWhiteColor,
             ),
           ],
         ),

@@ -22,11 +22,11 @@ class _DetailNilaiPageState extends State<DetailNilaiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: PrimaryColor,
+        backgroundColor: primaryColor,
         title: Text(
           'SMAN 1 SAROLANGUN',
           style: TextStyle(
-            color: NeutralWhiteColor,
+            color: neutralWhiteColor,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -37,7 +37,7 @@ class _DetailNilaiPageState extends State<DetailNilaiPage> {
         ),
         centerTitle: true,
       ),
-      backgroundColor: PrimaryColor,
+      backgroundColor: primaryColor,
       body: Container(
         child: Column(
           children: [
@@ -45,16 +45,16 @@ class _DetailNilaiPageState extends State<DetailNilaiPage> {
             Text(
               'Lomba Cerdas Cermat',
               style: extraBoldTextStyle1.copyWith(
-                  fontSize: 20, color: NeutralWhiteColor),
+                  fontSize: 20, color: neutralWhiteColor),
             ),
             Text(
               'Universitas Jambi',
-              style: lightTextStyle1.copyWith(color: NeutralWhiteColor),
+              style: lightTextStyle1.copyWith(color: neutralWhiteColor),
             ),
             const SizedBox(height: 5.0),
             Container(
               decoration: BoxDecoration(
-                color: NeutralWhiteColor,
+                color: neutralWhiteColor,
               ),
               padding: const EdgeInsets.all(0),
               margin: const EdgeInsets.only(top: 5.0),

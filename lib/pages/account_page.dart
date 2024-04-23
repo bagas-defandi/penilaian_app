@@ -22,7 +22,7 @@ class _AccountPageState extends State<AccountPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Padding(
@@ -30,25 +30,24 @@ class _AccountPageState extends State<AccountPage> {
                     bottom: 15, left: 15, right: 15, top: 10),
                 child: Row(
                   children: [
-                    Container(
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
-                          },
-                          child: Icon(Icons.arrow_back_ios_new),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: PrimaryColor,
-                            backgroundColor: NeutralWhiteColor,
-                            shape: CircleBorder(),
-                            minimumSize: Size(10, 60),
-                          )),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: primaryColor,
+                        backgroundColor: neutralWhiteColor,
+                        shape: const CircleBorder(),
+                        minimumSize: const Size(10, 60),
+                      ),
+                      child: const Icon(Icons.arrow_back_ios_new),
                     ),
                     Text(
                       "My Account",
-                      style: boldtTextStyle1.copyWith(color: PrimaryColor),
+                      style: boldtTextStyle1.copyWith(color: primaryColor),
                     ),
                   ],
                 ),
@@ -58,13 +57,13 @@ class _AccountPageState extends State<AccountPage> {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: NeutralWhiteColor,
+                      color: neutralWhiteColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Basic Information",
-                      style: boldTextStyle3.copyWith(color: PrimaryColor),
+                      style: boldTextStyle3.copyWith(color: primaryColor),
                     ),
                   )),
               // StreamBuilder(
@@ -140,7 +139,7 @@ class _AccountPageState extends State<AccountPage> {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: NeutralWhiteColor,
+                      color: neutralWhiteColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -149,7 +148,7 @@ class _AccountPageState extends State<AccountPage> {
                       children: [
                         Text(
                           "Links",
-                          style: boldTextStyle3.copyWith(color: PrimaryColor),
+                          style: boldTextStyle3.copyWith(color: primaryColor),
                         ),
                       ],
                     ),
@@ -165,15 +164,13 @@ class _AccountPageState extends State<AccountPage> {
                         children: [
                           Icon(
                             Icons.info,
-                            color: PrimaryColor,
+                            color: primaryColor,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             "About the app",
                             style:
-                                regularTextStyle1.copyWith(color: PrimaryColor),
+                                regularTextStyle1.copyWith(color: primaryColor),
                           ),
                         ],
                       ),
@@ -187,9 +184,9 @@ class _AccountPageState extends State<AccountPage> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => const HomePage()));
                           },
-                          child: Icon(Icons.chevron_right),
+                          child: const Icon(Icons.chevron_right),
                         ),
                       ),
                     ),
@@ -203,7 +200,7 @@ class _AccountPageState extends State<AccountPage> {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: NeutralWhiteColor,
+                      color: neutralWhiteColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -212,7 +209,7 @@ class _AccountPageState extends State<AccountPage> {
                       children: [
                         Text(
                           "Privacy",
-                          style: boldTextStyle3.copyWith(color: PrimaryColor),
+                          style: boldTextStyle3.copyWith(color: primaryColor),
                         ),
                       ],
                     ),
@@ -228,15 +225,13 @@ class _AccountPageState extends State<AccountPage> {
                         children: [
                           Icon(
                             Icons.sticky_note_2_rounded,
-                            color: PrimaryColor,
+                            color: primaryColor,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             "Terms of use",
                             style:
-                                regularTextStyle1.copyWith(color: PrimaryColor),
+                                regularTextStyle1.copyWith(color: primaryColor),
                           ),
                         ],
                       ),
@@ -250,9 +245,9 @@ class _AccountPageState extends State<AccountPage> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => const HomePage()));
                           },
-                          child: Icon(Icons.chevron_right),
+                          child: const Icon(Icons.chevron_right),
                         ),
                       ),
                     ),
@@ -270,15 +265,13 @@ class _AccountPageState extends State<AccountPage> {
                         children: [
                           Icon(
                             Icons.privacy_tip_rounded,
-                            color: PrimaryColor,
+                            color: primaryColor,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             "Privacy Policy",
                             style:
-                                regularTextStyle1.copyWith(color: PrimaryColor),
+                                regularTextStyle1.copyWith(color: primaryColor),
                           ),
                         ],
                       ),
@@ -292,9 +285,9 @@ class _AccountPageState extends State<AccountPage> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => const HomePage()));
                           },
-                          child: Icon(Icons.chevron_right),
+                          child: const Icon(Icons.chevron_right),
                         ),
                       ),
                     ),
@@ -308,7 +301,7 @@ class _AccountPageState extends State<AccountPage> {
                   width: MediaQuery.of(context).size.width,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: NeutralWhiteColor,
+                      color: neutralWhiteColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -317,7 +310,7 @@ class _AccountPageState extends State<AccountPage> {
                       children: [
                         Text(
                           "Account Settings",
-                          style: boldTextStyle3.copyWith(color: PrimaryColor),
+                          style: boldTextStyle3.copyWith(color: primaryColor),
                         ),
                       ],
                     ),
@@ -333,15 +326,13 @@ class _AccountPageState extends State<AccountPage> {
                         children: [
                           Icon(
                             Icons.password_rounded,
-                            color: PrimaryColor,
+                            color: primaryColor,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             "Change Password",
                             style:
-                                regularTextStyle1.copyWith(color: PrimaryColor),
+                                regularTextStyle1.copyWith(color: primaryColor),
                           ),
                         ],
                       ),
@@ -355,9 +346,9 @@ class _AccountPageState extends State<AccountPage> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => const HomePage()));
                           },
-                          child: Icon(Icons.chevron_right),
+                          child: const Icon(Icons.chevron_right),
                         ),
                       ),
                     ),
@@ -375,15 +366,13 @@ class _AccountPageState extends State<AccountPage> {
                         children: [
                           Icon(
                             Icons.logout,
-                            color: PrimaryColor,
+                            color: primaryColor,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          const SizedBox(width: 10),
                           Text(
                             "Sign Out",
                             style:
-                                regularTextStyle1.copyWith(color: PrimaryColor),
+                                regularTextStyle1.copyWith(color: primaryColor),
                           ),
                         ],
                       ),

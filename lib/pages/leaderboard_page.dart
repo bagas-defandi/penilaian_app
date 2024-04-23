@@ -17,10 +17,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: PrimaryColor,
+          backgroundColor: primaryColor,
           title: Text(
             'Papan Peringkat',
-            style: boldtTextStyle1.copyWith(color: NeutralWhiteColor),
+            style: boldtTextStyle1.copyWith(color: neutralWhiteColor),
           ),
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
@@ -28,11 +28,11 @@ class _LeaderBoardState extends State<LeaderBoard> {
           ),
           centerTitle: true,
         ),
-        backgroundColor: PrimaryColor,
+        backgroundColor: primaryColor,
         body: Column(
           children: [
             TabBar(
-              labelColor: NeutralWhiteColor,
+              labelColor: neutralWhiteColor,
               tabs: [
                 Tab(text: "Umum"),
                 Tab(text: "Detail"),

@@ -28,7 +28,7 @@ class CardWidget extends StatelessWidget {
                     Text(
                       'Judul Lomba',
                       style:
-                          regularTextStyle1.copyWith(color: NeutralWhiteColor),
+                          regularTextStyle1.copyWith(color: neutralWhiteColor),
                     ),
                   ],
                 ),
