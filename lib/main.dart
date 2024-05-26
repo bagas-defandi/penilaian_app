@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:penilaian_app/pages/account_page.dart';
-import 'package:penilaian_app/pages/adminlogin_page.dart';
+import 'package:penilaian_app/pages/login_page.dart';
 import 'package:penilaian_app/pages/auth_page.dart';
 import 'package:penilaian_app/pages/create_lomba_page.dart';
 import 'package:penilaian_app/pages/detail_nilai_page.dart';
 import 'package:penilaian_app/pages/form_penilaian_page.dart';
 import 'package:penilaian_app/pages/home.dart';
-import 'package:penilaian_app/pages/jurilogin_page.dart';
 import 'package:penilaian_app/pages/leaderboard_page.dart';
 import 'package:penilaian_app/pages/nilai_peserta_page.dart';
 import 'package:penilaian_app/pages/tambah_juri.dart';
@@ -50,8 +49,7 @@ class MyApp extends StatelessWidget {
         "/manage-juri": (context) => const JuriPage(),
         "/tambah-juri": (context) => const TambahJuriPage(),
         "/home": (context) => const HomePage(),
-        "/admin": (context) => const LoginAdmin(),
-        "/juri": (context) => const LoginJuri(),
+        "/login": (context) => const LoginPage(),
         "/create-lomba": (context) => const CreateLombaPage(),
         "/tentang-lomba": (context) => const TentangLombaPage(),
         "/detail-nilai": (context) => const DetailNilaiPage(),

@@ -1,6 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:penilaian_app/components/primary_text_field.dart';
 import 'package:penilaian_app/services/firestore.dart';
 
 class CreateLombaPage extends StatefulWidget {
@@ -27,7 +28,6 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
   int currentStep = 0;
 
   final _judulController = TextEditingController();
-  final _penyelenggaraController = TextEditingController();
   final _deskripsiController = TextEditingController();
 
   List<GlobalKey<FormState>> formKeys = [
@@ -124,7 +124,6 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
 
               Map<String, dynamic> lombaMap = {
                 "judul": _judulController.text,
-                "penyelenggara": _penyelenggaraController.text,
                 "deskripsi": _deskripsiController.text,
                 "peserta": allPeserta,
                 "juri": allJuriId,
@@ -170,50 +169,10 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              TextFormField(
+              PrimaryTextField(
+                name: 'Judul Lomba',
                 controller: _judulController,
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Judul Lomba wajib diisi'
-                    : null,
-                decoration: InputDecoration(
-                  hintText: 'Masukkan Judul Lomba',
-                  contentPadding: const EdgeInsets.all(16),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Text(
-                  "Penyelenggara",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _penyelenggaraController,
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Penyelenggara Lomba wajib diisi'
-                    : null,
-                decoration: InputDecoration(
-                  hintText: 'Masukkan Penyelenggara Lomba',
-                  contentPadding: const EdgeInsets.all(16),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
+                hintText: 'Masukkan Judul Lomba',
               ),
               const SizedBox(height: 20),
               const Padding(
@@ -228,24 +187,10 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              TextFormField(
+              PrimaryTextField(
+                name: 'Deskripsi Lomba',
                 controller: _deskripsiController,
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Deskripsi Lomba wajib diisi'
-                    : null,
-                decoration: InputDecoration(
-                  hintText: 'Masukkan Deskripsi Lomba',
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 35,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
+                hintText: 'Masukkan Deskripsi Lomba',
               ),
             ],
           ),
@@ -275,8 +220,11 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
               Row(
                 children: [
                   Expanded(
-                    child: TextFormField(
+                    child: PrimaryTextField(
+                      name: 'Jumlah Peserta',
                       controller: _jumlahPesertaController,
+                      isOnlyNumber: true,
+                      hintText: 'Masukkan Jumlah Peserta',
                       onChanged: (value) => changeJumlahPeserta(value),
                       validator: (value) => value == null ||
                               value.isEmpty ||
@@ -284,18 +232,6 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
                               int.parse(value) >= 50
                           ? 'Jumlah Peserta harus 1 - 50'
                           : null,
-                      decoration: InputDecoration(
-                        hintText: 'Masukkan Jumlah Peserta',
-                        contentPadding: const EdgeInsets.all(16),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                      keyboardType: const TextInputType.numberWithOptions(),
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     ),
                   ),
                   const SizedBox(width: 7),
@@ -550,17 +486,6 @@ class _CreateLombaPageState extends State<CreateLombaPage> {
               ),
               const SizedBox(height: 5),
               Text(_judulController.text),
-              const SizedBox(height: 15),
-              const Text(
-                "Penyelenggara Lomba",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Color(0xFF2E384E),
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(_penyelenggaraController.text),
               const SizedBox(height: 15),
               const Text(
                 "Deskripsi Lomba",

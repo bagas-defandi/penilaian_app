@@ -1,17 +1,17 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:penilaian_app/components/primary_text_field.dart';
 import 'package:penilaian_app/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginAdmin extends StatefulWidget {
-  const LoginAdmin({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<LoginAdmin> createState() => _LoginAdminState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginAdminState extends State<LoginAdmin> {
+class _LoginPageState extends State<LoginPage> {
   bool passwordHidden = true;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -80,7 +80,7 @@ class _LoginAdminState extends State<LoginAdmin> {
               children: [
                 const SizedBox(height: 105),
                 Image.asset('assets/images/img_page1.png'),
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -93,7 +93,7 @@ class _LoginAdminState extends State<LoginAdmin> {
                       child: Column(
                         children: [
                           const Text(
-                            'Masuk Sebagai Admin',
+                            'Masuk ke Sistem',
                             style: TextStyle(
                               fontWeight: FontWeight.w800,
                               fontSize: 24,
@@ -102,55 +102,21 @@ class _LoginAdminState extends State<LoginAdmin> {
                           const SizedBox(height: 20),
 
                           // Email Textfield
-                          TextFormField(
+                          PrimaryTextField(
+                            name: 'Email',
                             controller: _emailController,
-                            validator: (value) => value == null || value.isEmpty
-                                ? 'Email wajib diisi'
-                                : null,
-                            decoration: InputDecoration(
-                              hintText: 'Email',
-                              contentPadding: const EdgeInsets.all(16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(
-                                  20.0,
-                                ),
-                              ),
-                            ),
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
                           ),
                           const SizedBox(height: 20),
 
                           // Password Textfield
-                          TextFormField(
+                          PrimaryTextField(
+                            name: 'Password',
                             controller: _passwordController,
-                            validator: (value) => value == null || value.isEmpty
-                                ? 'Password wajib diisi'
-                                : null,
-                            decoration: InputDecoration(
-                              hintText: 'Password',
-                              contentPadding: const EdgeInsets.all(16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(
-                                  20.0,
-                                ),
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    passwordHidden = !passwordHidden;
-                                  });
-                                },
-                                icon: Icon(passwordHidden
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                              ),
-                            ),
-                            obscureText: passwordHidden,
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
+                            isPassword: true,
+                            isPasswordHidden: passwordHidden,
+                            onPressedPassword: () {
+                              setState(() => passwordHidden = !passwordHidden);
+                            },
                           ),
                           const SizedBox(height: 15),
 
@@ -160,7 +126,11 @@ class _LoginAdminState extends State<LoginAdmin> {
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                                onTap: signIn,
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    signIn();
+                                  }
+                                },
                                 child: Container(
                                   width: 100,
                                   padding: const EdgeInsets.all(5.0),
@@ -179,31 +149,6 @@ class _LoginAdminState extends State<LoginAdmin> {
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 10),
-                          // Masuk sebagai Juri
-                          RichText(
-                            text: TextSpan(
-                              style: const TextStyle(color: Colors.black),
-                              children: [
-                                const TextSpan(
-                                  text: 'Masuk sebagai ',
-                                ),
-                                TextSpan(
-                                  text: "Juri",
-                                  style: TextStyle(
-                                    color: primaryColor,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      Navigator.pushReplacementNamed(
-                                          context, "/juri");
-                                    },
-                                )
-                              ],
                             ),
                           ),
                         ],
